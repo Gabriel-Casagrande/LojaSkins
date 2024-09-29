@@ -32,7 +32,7 @@ def signup():
 		password = request.form.get("password")
 		repassword = request.form.get("repassword")
 		if(password!=repassword):
-			return render_template("error.html", message="Passwords do not match!")
+			return render_template("error.html", message="Senhas não combinam!")
 
 		#hash password
 		pw_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
@@ -45,8 +45,8 @@ def signup():
 			db.session.add(new_user)
 			db.session.commit()
 		except:
-			return render_template("error.html", message="Username already exists!")
-		return render_template("login.html", msg="Account created!")
+			return render_template("error.html", message="Este username já existe!")
+		return render_template("login.html", msg="Conta criada!")
 	return render_template("signup.html")
 
 #login as merchant
@@ -60,7 +60,7 @@ def login():
 		print(result)
 		# Ensure username exists and password is correct
 		if result == None or not check_password_hash(result.password, password):
-			return render_template("error.html", message="Invalid username and/or password")
+			return render_template("error.html", message="Username e/ou ssenha inválidos")
 		# Remember which user has logged in
 		session["username"] = result.username
 		return redirect("/home")
@@ -95,7 +95,7 @@ def home():
 		db.session.add(new_pro)
 		db.session.commit()
 		rows = Product.query.filter_by(username=session['username'])
-		return render_template("home.html", rows=rows, message="Product added")
+		return render_template("home.html", rows=rows, message="Produto adicionado!")
 	
 	rows = Product.query.filter_by(username=session['username'])
 	return render_template("home.html", rows=rows)
@@ -109,7 +109,7 @@ def edit(pro_id):
 	if request.method == "POST":
 		#throw error when some merchant tries to edit product of other merchant
 		if result.username != session['username']:
-			return render_template("error.html", message="You are not authorized to edit this product")
+			return render_template("error.html", message="Você não esta autorizado a editar este produto")
 		category= request.form.get("category")
 		name = request.form.get("pro_name")
 		description = request.form.get("description")
@@ -122,6 +122,6 @@ def edit(pro_id):
 		result.price_range = price_range
 		db.session.commit()
 		rows = Product.query.filter_by(username=session['username'])
-		return render_template("home.html", rows=rows, message="Product edited")
+		return render_template("home.html", rows=rows, message="Produto editado!")
 	return render_template("edit.html", result=result)
 

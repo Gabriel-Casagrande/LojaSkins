@@ -7,8 +7,8 @@
 {% block body %}
 	<div class="container" id="topdiv4">
 		<nav class="navbar navbar-light bg-light">
-			<a href="{{ url_for('index')}}"><span class="navbar-brand mb-0 h1">View all Products</span></a>
-			<a class="btn btn-outline-info my-2 my-sm-0" href="{{url_for('logout')}}">Logout</a>
+			<a href="{{ url_for('index')}}"><span class="navbar-brand mb-0 h1">Ver Todos os Produtos</span></a>
+			<a class="btn btn-outline-info my-2 my-sm-0" href="{{url_for('logout')}}">Sair</a>
 		</nav>
 		{% if message %}
 			<div class="alert alert-success" role="alert">
@@ -19,56 +19,57 @@
 			<div class="col-sm-6">
 				<div class="card">
       				<div class="card-body">
-        				<h5 class="card-title">Do you want to Add a new Product?</h5>
-        				<p class="card-text">Adding new products was never this easy.</p>
-        				<button class="btn btn-primary" id="add_new">Click here</button>
+        				<h5 class="card-title">Quer adicionar um novo produto?</h5>
+        				<p class="card-text">Adicionar novos produtos nunca foi tão fácil.</p>
+        				<button class="btn btn-primary" id="add_new">Clque Aqui</button>
       				</div>
     			</div>
   			</div>
 	  		<div class="col-sm-6">
 	    		<div class="card">
 	      			<div class="card-body">
-	        			<h5 class="card-title">Do you want to edit your products?</h5>
-	        			<p class="card-text">Editting products was never this easy.</p>
-	        			<button class="btn btn-primary" id="edit">Click here</button>
+	        			<h5 class="card-title">Quer editar seus produtos?</h5>
+	        			<p class="card-text">Editar produtos nunca foi tão fácil.</p>
+	        			<button class="btn btn-primary" id="edit">Clique aqui</button>
 	      			</div>
 	    		</div>
 	  		</div>
 		</div>
 		<div class="card w-75" id="topdiv2">
 			<form class="card-body" action="{{ url_for('home') }}" method="POST" enctype="multipart/form-data">
-				<h5 class="card-title">Add New Item</h5>
+				<h5 class="card-title">Adicionar novo item</h5>
 				<div class="form-group">
-	    			<label for="category">Category</label>
+	    			<label for="category">Categoria</label>
 	    			<input type="text" class="form-control" name="category" required autofocus>
 	  			</div>
 	  			<div class="form-group">
-	    			<label for="category">Name</label>
+	    			<label for="category">Nome</label>
 	    			<input type="text" class="form-control" name="pro_name" required>
 	  			</div>
 	  			<div class="form-group">
-	    			<label for="category">Description</label>
+	    			<label for="category">Descrição</label>
 	    			<input type="text" class="form-control" name="description">
 	  			</div>
 	  			<div class="form-group">
-	  				<label for="price">Price Range</label>
+	  				<label for="price">Faixa de Preço</label>
     				<select class="form-control" name=price_range>
-    					<option value="₹100-₹500">₹100-₹500</option>
-					    <option value="₹500-₹1000">₹500-₹1000</option>
-					    <option value="₹1000-₹2000">₹1000-₹2000</option>
-					    <option value="₹2000-₹5000">₹2000-₹5000</option>
-					    <option value="₹5000-₹10000">₹5000-₹10000</option>
+    					<option value="R$1-R$100">R$5000-R$10000</option>
+	      				<option value="R$100-R$500">R$100-R$500</option>
+				   		<option value="R$500-R$1000">R$500-R$1000</option>
+				    	<option value="R$1000-R$2000">R$1000-R$2000</option>
+				    	<option value="R$2000-R$5000">R$2000-R$5000</option>
+				    	<option value="R$5000-R$10000">R$5000-R$10000</option>
     				</select>
   				</div>
 	  			<div class="form-group">
-	    			<label for="category">Comments</label>
+	    			<label for="category">Comentários</label>
 	    			<input type="text" class="form-control" name="comments">
 	  			</div>
 	  			<div class="form-group">
-	  				<label for="exampleFormControlFile1">Product Image</label>
+	  				<label for="exampleFormControlFile1">Imagem do Produto</label>
 	    			<input type="file" class="form-control-file" name="image" accept="image/">
 	  			</div>
-	  			<button type="submit" class="btn btn-primary">Add</button>
+	  			<button type="submit" class="btn btn-primary">Adicionar</button>
 			</form>
 		</div>
 		<div id="topdiv3">
@@ -83,11 +84,11 @@
 			  				</div>
 			  				<ul class="list-group list-group-flush">
 			  					<li class="list-group-item">{{row.description}}</li>
-			    				<li class="list-group-item">Price Range: {{row.price_range}}</li>
+			    				<li class="list-group-item">Faixa de Preço: {{row.price_range}}</li>
 			    				<li class="list-group-item">{{row.comments}}</li>
 			  				</ul>
 			  				<div class="card-body">
-			    				<a href="{{ url_for('edit', pro_id=row.pro_id) }}" class="card-link">Edit Product</a>
+			    				<a href="{{ url_for('edit', pro_id=row.pro_id) }}" class="card-link">Editar Produto</a>
 			  				</div>
 						</div>
 					{% endfor %}

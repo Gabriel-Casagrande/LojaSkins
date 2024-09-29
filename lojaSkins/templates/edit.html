@@ -6,35 +6,36 @@
 
 {% block body %}
 	<div class="container" id="topdiv5">
-		<h5 class="card-title">Edit your Product</h5>
+		<h5 class="card-title">Edite Seus Produtos</h5>
 		<form action="{{ url_for('edit', pro_id = result.pro_id) }}" method="POST">
 			<div class="form-group">
-	    		<label for="exampleFormControlTextarea1">Category</label>
+	    		<label for="exampleFormControlTextarea1">Categoria</label>
 	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1"name="category" required>{{result.category}}</textarea>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="exampleFormControlTextarea1">Name</label>
+	    		<label for="exampleFormControlTextarea1">Nome</label>
 	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="pro_name" required>{{result.name}}</textarea>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="exampleFormControlTextarea1">Description</label>
+	    		<label for="exampleFormControlTextarea1">Descrição</label>
 	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="description" required>{{result.description}}</textarea>
 	  		</div>
 			<div class="form-group">
-				<label for="exampleFormControlSelect1">Price Range</label>
+				<label for="exampleFormControlSelect1">Faixa de Preço</label>
 	    		<select class="form-control" name="price_range">
-	      			<option value="₹100-₹500">₹100-₹500</option>
-				    <option value="₹500-₹1000">₹500-₹1000</option>
-				    <option value="₹1000-₹2000">₹1000-₹2000</option>
-				    <option value="₹2000-₹5000">₹2000-₹5000</option>
-				    <option value="₹5000-₹10000">₹5000-₹10000</option>
+					<option value="R$1-R$100">R$5000-R$10000</option>
+	      			<option value="R$100-R$500">R$100-R$500</option>
+				    <option value="R$500-R$1000">R$500-R$1000</option>
+				    <option value="R$1000-R$2000">R$1000-R$2000</option>
+				    <option value="R$2000-R$5000">R$2000-R$5000</option>
+				    <option value="R$5000-R$10000">R$5000-R$10000</option>
 	    		</select>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="exampleFormControlTextarea1">Comments</label>
+	    		<label for="exampleFormControlTextarea1">Comentários</label>
 	    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="comments" required>{{result.comments}}</textarea>
 	  		</div>
-	  		<button type="submit" class="btn btn-primary">Done</button>
+	  		<button type="submit" class="btn btn-primary">Feito</button>
 		</form>
 	</div>
 {% endblock %}
