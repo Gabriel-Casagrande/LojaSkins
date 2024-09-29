@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"></link>
+  </head>
+  <body>
+    <form class="c-form" 
+        {% if usuario %}
+            action="{{ url_for('usuarios.updateUsuarios', usuario_id=usuario.id)}}" 
+        {% else %}
+            action="{{ url_for('usuarios.inserirUsuarios') }}" 
+        {% endif %}
+
+        method="{% if usuario %}PUT{% else %}POST{% endif %}"
+        {% if usuario %}
+          c-swap="#usuario-{{usuario.id}}"
+        {% else %}
+          c-append="#lista-usuarios"
+        {% endif %}
+        c-reload-container="true">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" class="form-control" name="nome" {% if usuario%}
+      value="{{usuario.nome}}"{% endif %}>
+    </div>
+    <div class="mb-3">
+        <label id="label-target" class="form-label">Email</label>
+        <input type="text" class="form-control" name="email" {% if usuario%}
+        value="{{usuario.email}}"{% endif %}>
+    </div>
+    <button type="submit" class="d-flex justify-content-center btn btn-success">
+        {% if usuario %}Salvar{% else %}Criar{% endif %}
+    </button>
+</form>
+    <script src="../static/js/bootstrap.min.js"></script> 
+    <script src="{{ url_for('static', filename='cru.js')  }}"></script> 
+  </body>
+</html>
+
+

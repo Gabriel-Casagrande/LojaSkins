@@ -1,0 +1,32 @@
+{% extends 'navegacao.html' %}
+{% block conteudo %}
+  {% set mensagens = get_flashed_messages(with_categories=true) %} 
+  {% if mensagens %}     
+  {% for categoria, msg in mensagens %}
+      <div class="alert alert-{{categoria}}" role="alert">
+          {{ msg }}
+      </div>
+  {% endfor %}
+  {% endif %}
+    <form action="/autenticar" method="post">
+    </br></br></br>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label  class="col-form-label">Login</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" name="usuario" class="form-control" aria-describedby="passwordHelpInline">
+          </div>
+        </br>
+        <div class="col-auto">
+          <label class="col-form-label">Password</label>
+        </div>
+        <div class="col-auto">
+          <input type="password" name="senha" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success">Entrar</button>
+        </div>
+    </form>
+
+{% endblock %}

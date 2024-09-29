@@ -1,0 +1,41 @@
+{% extends 'navegacao.html' %}
+{% block conteudo %}
+    <form action="/cadastrarDados" method="post">
+    </br></br></br>
+      <div class=form-group">
+        <div class="col-auto"> 
+            <label>Estado</label>       
+            <select class="form-control" name="estado">
+                <option value="RS"> Rio Grande do Sul </option>
+                <option value="SC"> Santa Catarina </option>
+                <option value="PR"> Paraná</option>
+            </select>
+          </div>
+        </br>
+            <div class="form-group">
+                <label>Formação</label>
+                <div>
+                    <input type="radio" name="formacao" value="fundamental">Ensino Fundamental<br>
+                    <input type="radio" name="formacao" value="medio">Ensino Médio<br>
+                    <input type="radio" name="formacao" value="superior">Ensino Superior<br
+                </div>
+            </div>
+        </br>
+        <div class="form-group">
+            <label>Área de Interesse</label>
+            <div>
+                <input type="checkbox" name="area" value="Programacao"> Programação<br>
+                <input type="checkbox" name="area" value="ES"> Engenharia de Software<br>
+                <input type="checkbox" name="area" value="Redes"> Redes de Computadores<br>
+            </div>
+        </div>
+        </br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+      </div>
+    </form>
+{% endblock %}
+
+
+

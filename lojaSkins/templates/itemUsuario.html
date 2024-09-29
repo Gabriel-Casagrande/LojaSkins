@@ -1,0 +1,23 @@
+<tr id="usuario-{{usuario.id}}">
+    <th scope="row">{{usuario.id}}</th>
+    <td>{{usuario.nome}}</td>
+    <td>{{usuario.email}}</td>
+    <td>
+        <button class="btn btn-secondary" 
+            c-get="{{ url_for('usuarios.obterUsuarios', usuario_id=usuario.id) }}"
+            c-target="#exibir-usuario"
+            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ver
+        </button>
+        <button class="btn btn-primary" 
+        c-get="{{url_for('usuarios.editarUsuarios', usuario_id=usuario.id)}}"
+        c-target="#form-usuario">
+            Editar
+        </button>
+        <button class="btn btn-danger" 
+            c-delete="{{url_for('usuarios.deletarUsuarios', usuario_id=usuario.id)}}"
+            c-remove-closest="tr">
+            Deletar
+        </button>
+    </td>
+</tr>
