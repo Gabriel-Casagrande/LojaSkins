@@ -1,0 +1,51 @@
+body {
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.sidebar {
+    background-color: #262626;
+    padding: 20px;
+    height: 100vh;
+}
+
+.filter-section h6 {
+    margin-top: 20px;
+}
+
+.filter-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.filter-section ul li {
+    margin-bottom: 10px;
+}
+
+.card {
+    background-color: #333;
+    border: none;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.card img {
+    object-fit: cover;
+    height: 150px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+input[type="range"] {
+    width: 100%;
+}

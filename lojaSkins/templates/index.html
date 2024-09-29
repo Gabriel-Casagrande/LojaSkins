@@ -1,44 +1,32 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"></link>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="text-center">Gestão de Usuários</h1>
+{% extends "layout.html" %}
 
-      <!--Formulário criar usuários-->
-      <div id="form-usuario" c-container="{{ url_for('usuarios.formUsuarios') }}"></div>
-      <hr>
+{% block title %}
+    Index
+{% endblock %}
 
-      <!--Lista de Usuários-->
-      <h2>Lista de Usuários</h2>
-      <div c-container="{{ url_for('usuarios.listarUsuarios') }}"></div>
-      </div>
-      <!--Modal-->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
-      aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Visualizar Dados</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" 
-              aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="exibir-usuario"></div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" 
-              data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    <script src="../static/js/bootstrap.min.js"></script>  
-    <script src="{{ url_for('static', filename='cru.js')  }}"></script>
-  </body>
-</html>
+{% block body %}
+	<div class="container" id="topdiv6">
+		<nav class="navbar navbar-light bg-light">
+			<span class="navbar-brand mb-0 h1">Products</span>
+			<a class="my-2 my-sm-0" href="{{url_for('signup')}}">Are you a Merchant?</a>
+		</nav>
+		{% if rows %}
+				<div class="row" id="index0">
+					{% for row in rows %}
+						<div class="card needspace" style="width: 18rem;">
+							<img src="{{ url_for('static_dir', path = 'images/'+row.filename) }}" class="card-img-top" alt="...">
+							<div class="card-body">
+			    				<h5 class="card-title">{{row.name}}</h5>
+			    				<p class="card-text">{{row.category}}</p>
+			  				</div>
+			  				<ul class="list-group list-group-flush">
+			  					<li class="list-group-item">{{row.description}}</li>
+			    				<li class="list-group-item">Price Range: {{row.price_range}}</li>
+			    				<li class="list-group-item">{{row.comments}}</li>
+			  				</ul>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+	</div>
+{% endblock %}
