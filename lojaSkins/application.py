@@ -60,7 +60,7 @@ def login():
 		print(result)
 		# Ensure username exists and password is correct
 		if result == None or not check_password_hash(result.password, password):
-			return render_template("error.html", message="Username e/ou ssenha inválidos")
+			return render_template("error.html", message="Username e/ou senha inválidos")
 		# Remember which user has logged in
 		session["username"] = result.username
 		return redirect("/home")
@@ -78,7 +78,6 @@ def index():
 	rows = Product.query.all()
 	return render_template("index.html", rows=rows)
 
-#merchant home page to add new products and edit existing products
 @app.route("/home", methods=["GET", "POST"], endpoint='home')
 @login_required
 def home():
@@ -100,14 +99,11 @@ def home():
 	rows = Product.query.filter_by(username=session['username'])
 	return render_template("home.html", rows=rows)
 
-#when edit product option is selected this function is loaded
 @app.route("/edit/<int:pro_id>", methods=["GET", "POST"], endpoint='edit')
 @login_required
 def edit(pro_id):
-	#select only the editing product from db
 	result = Product.query.filter_by(pro_id = pro_id).first()
 	if request.method == "POST":
-		#throw error when some merchant tries to edit product of other merchant
 		if result.username != session['username']:
 			return render_template("error.html", message="Você não esta autorizado a editar este produto")
 		category= request.form.get("category")
