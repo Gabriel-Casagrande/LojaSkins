@@ -77,19 +77,23 @@
 				<div class="row">
 					{% for row in rows %}
 						<div class="card needspace" style="width: 18rem;">
-							<img src="{{ url_for('static_dir', path = 'images/'+row.filename) }}" class="card-img-top" alt="...">
+							<img src="{{ url_for('static_dir', path='images/'+row.filename) }}" class="card-img-top" alt="...">
 							<div class="card-body">
-			    				<h5 class="card-title">{{row.name}}</h5>
-			    				<p class="card-text">{{row.category}}</p>
-			  				</div>
-			  				<ul class="list-group list-group-flush">
-			  					<li class="list-group-item">{{row.description}}</li>
-			    				<li class="list-group-item">Faixa de Preço: {{row.price_range}}</li>
-			    				<li class="list-group-item">{{row.comments}}</li>
-			  				</ul>
-			  				<div class="card-body">
-			    				<a href="{{ url_for('edit', pro_id=row.pro_id) }}" class="card-link">Editar Produto</a>
-			  				</div>
+								<h5 class="card-title">{{ row.name }}</h5>
+								<p class="card-text">{{ row.category }}</p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">{{ row.description }}</li>
+								<li class="list-group-item">Faixa de Preço: {{ row.price_range }}</li>
+								<li class="list-group-item">{{ row.comments }}</li>
+							</ul>
+							<div class="card-body">
+								<a href="{{ url_for('edit', pro_id=row.pro_id) }}" class="card-link">Editar Produto</a>
+								<!-- Form para exclusão do produto -->
+								<form action="{{ url_for('delete', pro_id=row.pro_id) }}" method="POST" style="display:inline;">
+									<button type="submit" class="btn btn-danger btn-sm">Excluir Produto</button>
+								</form>
+							</div>
 						</div>
 					{% endfor %}
 				</div>

@@ -121,3 +121,20 @@ def edit(pro_id):
 		return render_template("home.html", rows=rows, message="Produto editado!")
 	return render_template("edit.html", result=result)
 
+@app.route("/delete/<int:pro_id>", methods=["POST"])
+@login_required
+def delete(pro_id):
+    result = Product.query.filter_by(pro_id=pro_id).first()
+    if not result:
+        return render_template("error.html", message="Produto não encontrado!")
+
+    if result.username != session['username']:
+        return render_template("error.html", message="Você não está autorizado a excluir este produto!")
+
+    try:
+        db.session.delete(result)
+        db.session.commit()
+        return redirect("/home")
+    except Exception as e:
+        return render_template("error.html", message=f"Erro ao excluir o produto: {e}")
+
